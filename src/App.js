@@ -6,6 +6,7 @@ import About from "./component/About";
 import Service from "./component/Service";
 import Error from "./component/Error";
 import Menu from "./component/Menu";
+import Contact from "./component/Contact";
 
 const App = () => {
     return (
@@ -15,6 +16,7 @@ const App = () => {
                 <Route path='/' exact component={Home}/>
                 <Route path='/about' component={About}/>
                 <Route path='/service' component={Service}/>
+                <Route path='/contact' component={Contact}/>
                 <Route component={Error}/>
             </Switch>
         </div>

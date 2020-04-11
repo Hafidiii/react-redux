@@ -10,6 +10,7 @@ import combineReducers from "./redux/reducers";
 import {Provider} from "react-redux";
 
 const store = createStore(combineReducers);
+
 ReactDOM.render(
 
       <Router>

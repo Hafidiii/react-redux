@@ -14,5 +14,17 @@ code {
 }
 
 main{
-  padding: 100px;
+  padding-top: 60px;
+  padding-left: 200px;
+  padding-right: 200px;
+}
+
+.contact-form{
+  padding-top: 60px;
+  padding-left: 200px;
+  padding-right: 200px;
+}
+
+hr{
+  width: 30%;
 }
