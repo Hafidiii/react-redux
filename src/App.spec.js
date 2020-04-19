@@ -1,5 +1,7 @@
+import { expect } from 'chai'
+
 describe('My Test Suite', () => {
     it('My Test Case', () => {
-        expect(true).toEqual(true);
+        expect(false).toEqual(true);
     });
 });
