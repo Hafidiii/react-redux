@@ -7,7 +7,7 @@ class Home extends Component {
     render() {
         const {title, setTitle} = this.props;
         return (
-            <main>
+            <div style={{ paddingTop: "50px" }}>
                 <h1>{title}</h1>
                 <p>
                     This is a simple hero unit, a simple jumbotron-style component for calling
@@ -16,7 +16,7 @@ class Home extends Component {
                 <p>
                     <Button onClick={setTitle} variant="primary">Change Title</Button>
                 </p>
-            </main>
+            </div>
         );
     }
 }

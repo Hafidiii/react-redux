@@ -1,26 +1,56 @@
 import React from 'react';
-import './App.css';
-import {Route, Switch} from 'react-router-dom';
+import './asset/css/App.css';
+import {connect} from 'react-redux';
+import {
+    Switch,
+    Route,
+    Redirect
+} from "react-router-dom";
+import Login from "./component/Login";
 import Home from "./component/Home";
-import About from "./component/About";
-import Service from "./component/Service";
-import Error from "./component/Error";
 import Menu from "./component/Menu";
-import Contact from "./component/Contact";
+import Error from "./component/Error";
 
-const App = () => {
+const PrivateRoute = ({children, isAuthenticated, ...rest}) => {
     return (
-        <div className="App">
-            <Menu/>
-            <Switch>
-                <Route path='/' exact component={Home}/>
-                <Route path='/about' component={About}/>
-                <Route path='/service' component={Service}/>
-                <Route path='/contact' component={Contact}/>
-                <Route component={Error}/>
-            </Switch>
-        </div>
+        <Route
+            {...rest}
+            render={() =>
+                isAuthenticated ? (
+                    children
+                ) : (
+                    <Redirect
+                        to={{
+                            pathname: "/login"
+                        }}
+                    />
+                )
+            }
+        />
     );
 };
 
-export default App;
+const logout = () => {
+
+};
+const App = ({isAuthenticated}) => {
+        return (
+            <div className="App">
+                {isAuthenticated && <Menu logout={logout}/>}
+                <Switch>
+                    <PrivateRoute isAuthenticated={isAuthenticated}  path='/home'>
+                        <Home/>
+                    </PrivateRoute>
+                    <Route path='/' exact component={Login}/>
+                    <Route path='/login' component={Login} />
+                    <Route component={Error}/>
+                </Switch>
+
+            </div>
+        );
+};
+
+export default connect( state => ({
+    isAuthenticated: state.loginReducer.isAuthenticated
+})
+)(App);

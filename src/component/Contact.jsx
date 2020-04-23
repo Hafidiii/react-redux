@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
 import {reduxForm, Field} from 'redux-form';
 import {connect} from "react-redux";
-import {} from 'react-router-dom';
-import * as loadAction from '../reducers/contactReducer';
-import swal from 'sweetalert';
 
 const validate = values => {
     const errors = {};

@@ -1,7 +1,10 @@
 import React from 'react';
-import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
-import logo from '../react3.png';
-const  Menu = () => {
+import {Navbar, Nav, Form, FormControl} from 'react-bootstrap';
+import logo from '../asset/img/react3.png';
+import {connect} from "react-redux";
+import * as loginActions from '../action/loginActions'
+
+const Menu = ({logout}) => {
     return (
 
         <Navbar bg="dark" variant="dark">
@@ -13,10 +16,14 @@ const  Menu = () => {
                 <Nav.Link href="/contact">Contact</Nav.Link>
             </Nav>
             <Form inline>
-                <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                <Button variant="outline-info">Search</Button>
+                <FormControl type="text" placeholder="Search" className="mr-sm-2"/>
+                <button className="btn btn-outline-info m-2">Search</button>
+                <button onClick={logout} className="btn btn-outline-info">Logout</button>
             </Form>
         </Navbar>
     );
 };
-export default Menu;
+export default connect(state => ({
+        isAuthenticated: state.loginReducer.isAuthenticated
+    }), {logout: loginActions.logout}
+)(Menu);

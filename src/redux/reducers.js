@@ -1,14 +1,21 @@
 import { combineReducers } from 'redux';
 import homeReducer  from '../reducers/homeReducer'
-import aboutReducer  from '../reducers/aboutReducer'
-import serviceReducer  from '../reducers/serviceReducer'
-import contactReducer  from '../reducers/contactReducer'
+import loginReducer  from '../reducers/loginReducer'
 import {reducer as formReducer} from 'redux-form';
+import { persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
 
-export default combineReducers({
+const reducers = combineReducers({
     homeReducer,
-    aboutReducer,
-    serviceReducer,
-    contactReducer,
+    loginReducer,
     form: formReducer
 });
+
+const persistConfig = {
+    key: 'root',
+    storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, reducers);
+
+export default persistedReducer;
